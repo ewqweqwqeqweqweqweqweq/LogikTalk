@@ -1,3 +1,3 @@
 # LogikTalk
 ---
-LogikTalk is simple messanger
+Online chat project
