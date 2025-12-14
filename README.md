@@ -1,2 +1,3 @@
 # LogikTalk
-My test messanger
+---
+LogikTalk is simple messanger
