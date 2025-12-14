@@ -19,12 +19,13 @@ PURPULE = "#B43EF5"
 MEDIUMBLUE = "#8D60F0"
 PHLOX = "#EB0EFC"
 
+# Label Class
 class MyLbl(CTkLabel):
     def __init__(self, master, text = "CTkLabel", size = 16, image = None):
         super().__init__(master, text_color=PHLOX, text = text, 
                          font=("Arial", size,"bold",),image =image)
         
-
+# Button class
 class MyBtn(CTkButton):
     def __init__(self, master, width = 140, height = 40, text = "CTkbutton", image = None,command = None):
 
@@ -34,6 +35,7 @@ class MyBtn(CTkButton):
                          text_color="white",
                          image=image, command=command)
 
+# Class which Inherit MyLabel class and creates for messages in chat
 class Mess(CTkLabel):
     def __init__(self,master,urer,icon,text,anchor):
         icon = CTkImage(light_image=Image.open(f"{icon}.png"),size=(25,25))
@@ -43,36 +45,43 @@ class Mess(CTkLabel):
                          pady=10,text=f"{urer}: {text}")
         self.pack(padx = 50, pady = 2, anchor= anchor)
 
+# Class for ALL app
 class App(CTk):
     def __init__(self):
+        # If user don't enter name then his name is anonim
         super().__init__()
         self.USER = "anonim"
         self.ICON = 0
 
+        # Window settings
         self.geometry("600x400")
         self.configure(fg_color="#4C474B")
         self.title("LogikTalk")
         self.iconbitmap("icon.ico")
         self.resizable(False,False)
 
-
+        # Welcome to my govnocode
         self.lbl = MyLbl(self,text = "WELCOME",size = 40, image = FON)
         self.lbl.place(x=0,y=0)  
 
+        # Name of app
         lbl = MyLbl(self,text = "LogikTalk",size = 30)
         lbl.place(x=405,y=50)
 
+        # Button for frame with textbox with enter the user's name
         self.btn_name = MyBtn(self,text = "Enter name", image=USER,command=self.open_name)
         self.btn_name.place(x=400,y=120)
 
+        # Button for frame with choose with enter the user's icon
         self.btn_icon = MyBtn(self,text = "Enter icon", image=CONF, command=self.open_icon)
         self.btn_icon.place(x=400,y=185)
 
+        # Button for frame with chat
         self.btn_chat = MyBtn(self,width=100,text = "Enter chat",)
         self.btn_chat.configure(fg_color= PHLOX,text_color="grey",command=self.open_chat)
         self.btn_chat.place(x=415,y=260)
 
-
+        # frame with enter name textbox
         self.frame_name = CTkFrame(self,width=350,height=400,fg_color="#342f2f")
         self.frame_name.place(x=-350,y=0)
         label3 = MyLbl(self.frame_name,text="enter your name", size = 20)
@@ -83,9 +92,12 @@ class App(CTk):
         self.btn_save_name = MyBtn(self.frame_name,text="save name",command = self.save_name)
         self.btn_save_name.place(x=100,y=220)
 
+        # Buttons with icons
         self.frame_icon = CTkFrame(self,width=350,height=400,fg_color="#342f2f")
         self.frame_icon.place(x=-350,y=0)
+        # row and column
         r,c = 0,0
+        # loop for place icons
         for i in range(1,7):
             if i%2==0:
                 c = 1
@@ -97,7 +109,7 @@ class App(CTk):
             
             r += 0.5    
 
-
+        # frame for
         self.frame_chat = CTkFrame(self,width=600,height=400,fg_color="#342f2f")
         self.frame_chat.place(x=0,y=-400)
         self.all_mess = CTkScrollableFrame(self.frame_chat,width=580,height=300,fg_color="#342f2f")
